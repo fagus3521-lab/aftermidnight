@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Content</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+body {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
+    min-height:100vh; display:flex; justify-content:center; align-items:center;
+    transition:background 1s; overflow-x:hidden; flex-direction:column; padding:20px;
+}
+/* Loading Screen */
+#loading { text-align:center; color:white; animation:pulse 1.5s infinite;
+    position:absolute; width:100%; height:100%; background:linear-gradient(135deg,#ffb6c1,#ff69b4,#ff1493);
+    display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:10;
+}
+#loading h1{font-size:60px;margin-bottom:15px;}
+#loading p{font-size:28px;margin-bottom:20px;}
+#loading span{display:block;font-size:22px;margin-top:10px;font-style:italic;}
+#countdown{font-size:45px;font-weight:bold;color:#fffacd;}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+
+/* Main Content */
+#main-content{display:none;width:100%;max-width:900px;text-align:center;color:#fff;}
+
+/* Verification Page */
+#verification{
+    margin-top:50px;padding:30px;background:rgba(255,255,255,0.1);
+    border-radius:20px; backdrop-filter:blur(10px); animation:fadeIn 1s ease forwards;
+}
+#verification h1{font-size:36px;margin-bottom:20px;text-shadow:2px 2px 5px #ff69b4;}
+#verification p{font-size:20px;margin-bottom:30px;}
+#verify-button{
+    background: linear-gradient(45deg,#ff69b4,#ff1493); border:none; padding:15px 30px;
+    font-size:20px;border-radius:15px;cursor:pointer;color:white;transition: transform 0.3s, box-shadow 0.3s;
+}
+#verify-button:hover{ transform:scale(1.1); box-shadow:0 0 20px rgba(255,255,255,0.5); }
+
+.age-warning{font-size:14px;color:#fffacd;display:flex;align-items:center;justify-content:center;gap:5px;margin-top:15px;}
+.age-warning svg{width:16px;height:16px;}
+
+/* Private Sections */
+.private-section{
+    margin-top:30px;background:rgba(255,255,255,0.1); padding:20px; border-radius:15px;
+    backdrop-filter:blur(10px); display:none; animation:fadeIn 1s ease forwards;
+}
+.private-section button{
+    background-color:#ff69b4;color:white;border:none;padding:12px 25px;font-size:18px;
+    border-radius:10px;cursor:pointer;transition: transform 0.3s, background-color 0.3s; margin-bottom:15px;
+}
+.private-section button:hover{ transform:scale(1.1); background-color:#ff1493;}
+.images-container{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+.images-container img{width:150px;height:150px;object-fit:cover;border-radius:15px;border:3px solid #fff;transition:transform 0.3s;}
+.images-container img:hover{transform:scale(1.1);}
+
+/* Extra Content Prompt */
+#extra-content h2{font-size:24px;margin-bottom:20px;color:#fff0f5;}
+#extra-button{
+    background:linear-gradient(45deg,#ff69b4,#ff1493); border:none; padding:15px 30px;
+    font-size:20px; border-radius:15px; cursor:pointer; color:white; transition: transform 0.3s, box-shadow 0.3s; margin-top:15px;
+}
+#extra-button:hover{transform:scale(1.1); box-shadow:0 0 20px rgba(255,255,255,0.5);}
+@keyframes fadeIn{0%{opacity:0; transform:translateY(20px);}100%{opacity:1; transform:translateY(0);}}
+
+
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading">
+    <h1>💖</h1>
+    <p>Private Content Loading...</p>
+    <div id="countdown">5</div>
+    <span>Patience, something special is on the way! ✨</span>
+</div>
+
+<!-- Main Content -->
+<div id="main-content">
+
+    <!-- Verification Section -->
+    <div id="verification">
+        <h1>This is my private content 💗</h1>
+        <p>If you want to view it, please click the button below to verify & continue.</p>
+        <button id="verify-button">Verify & Continue</button>
+        <div class="age-warning">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                <path d="M7.938 2.016a.13.13 0 0 1 .125 0l6.857 3.96c.036.02.061.057.07.097.01.04.003.082-.019.116L8.94 14.382a.13.13 0 0 1-.125.034.13.13 0 0 1-.1-.098l-1.43-6.25a.13.13 0 0 1 .03-.113l6.855-3.96zM8 5.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0v-3A.5.5 0 0 0 8 5.5zm.002 5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"/>
+            </svg>
+            You must be 18+ to view this content
+        </div>
+    </div>
+
+    <!-- Private Sections -->
+    <div class="private-section" id="content1">
+        <button>My Private Content 1</button>
+        <div class="images-container" id="images-content1"></div>
+    </div>
+
+    <div class="private-section" id="content2">
+        <button>My Private Content 2</button>
+        <div class="images-container" id="images-content2"></div>
+    </div>
+
+    <div class="private-section" id="content3">
+        <button>My Private Content 3</button>
+        <div class="images-container" id="images-content3"></div>
+    </div>
+
+    <!-- Extra Content Prompt -->
+    <div class="private-section" id="extra-content">
+        <h2>Do you want to see even better content? 💖😏</h2>
+        <button id="extra-button">Click here, darling</button>
+    </div>
+
+</div>
+
+<script>
+let countdown = 5;
+const countdownElement = document.getElementById('countdown');
+const loadingScreen = document.getElementById('loading');
+const mainContent = document.getElementById('main-content');
+const verifyButton = document.getElementById('verify-button');
+const extraContent = document.getElementById('extra-content');
+const extraButton = document.getElementById('extra-button');
+
+extraContent.style.display = 'none';
+
+// Foto tiap content (pakai link Imgur)
+const photos = {
+    content1: [
+        'https://i.imgur.com/KwCYalc.jpeg',
+        'https://i.imgur.com/EaryFnf.jpeg',
+        'https://i.imgur.com/lswriLj.jpeg'
+    ],
+    content2: [
+        'https://i.imgur.com/HEN3gqF.jpeg',
+        'https://i.imgur.com/FyGQZ6O.jpeg',
+        'https://i.imgur.com/G9OJ7lr.jpeg'
+    ],
+    content3: [
+        'https://i.imgur.com/MYJSlxC.jpeg',
+        'https://i.imgur.com/gAEan50.jpeg',
+        'https://i.imgur.com/jV9W1Fj.jpeg'
+    ]
+};
+
+// Fungsi tampilkan foto
+function displayPhotos(contentId, photoArray){
+    const container = document.getElementById('images-' + contentId);
+    photoArray.forEach(photo => {
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = 'Private Photo';
+        container.appendChild(img);
+    });
+}
+
+// Countdown loading
+const interval = setInterval(() => {
+    countdown--;
+    countdownElement.textContent = countdown;
+    if(countdown === 0){
+        clearInterval(interval);
+        loadingScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+    }
+}, 1000);
+
+// Verify & Continue
+verifyButton.addEventListener('click', () => {
+    for(const contentId in photos){
+        displayPhotos(contentId, photos[contentId]);
+    }
+    document.querySelectorAll('.private-section').forEach(section => section.style.display = 'block');
+    extraContent.style.display = 'block';
+    verifyButton.style.display = 'none';
+});
+
+// Extra button action
+extraButton.addEventListener('click', () => {
+    alert("Sayang, konten lebih bagus siap ditampilkan!");
+    // Bisa diganti redirect ke halaman lain
+});
+</script>
+
+</body>
+</html>
