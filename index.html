@@ -1,202 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Private Content</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exclusive Private Access</title>
 
-<!-- Open Graph untuk preview link -->
-<meta property="og:title" content="Private Content 💖">
-<meta property="og:description" content="Lihat konten spesial ini dengan gambar keren!">
-<meta property="og:image" content="https://i.imgur.com/WP73fM4.jpeg">
-<meta property="og:url" content="https://username.github.io/private-content/">
-<meta property="og:type" content="website">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Exclusive Private Access 💎" />
+  <meta property="og:description" content="Private gallery previews, premium vibes, exclusive access. Tap to continue." />
+  <meta property="og:image" content="https://i.imgur.com/WP73fM4.jpeg" />
+  <meta property="og:url" content="https://username.github.io/private-content/" />
+  <meta property="og:type" content="website" />
 
-<!-- Optional untuk Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Private Content 💖">
-<meta name="twitter:description" content="Lihat konten spesial ini dengan gambar keren!">
-<meta name="twitter:image" content="https://i.imgur.com/WP73fM4.jpeg">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Exclusive Private Access 💎" />
+  <meta name="twitter:description" content="Private gallery previews, premium vibes, exclusive access. Tap to continue." />
+  <meta name="twitter:image" content="https://i.imgur.com/WP73fM4.jpeg" />
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
-body {
-    background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
-    min-height:100vh; display:flex; justify-content:center; align-items:center;
-    transition:background 1s; overflow-x:hidden; flex-direction:column; padding:20px;
-}
-/* Loading Screen */
-#loading { text-align:center; color:white; animation:pulse 1.5s infinite;
-    position:absolute; width:100%; height:100%; background:linear-gradient(135deg,#ffb6c1,#ff69b4,#ff1493);
-    display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:10;
-}
-#loading h1{font-size:60px;margin-bottom:15px;}
-#loading p{font-size:28px;margin-bottom:20px;}
-#loading span{display:block;font-size:22px;margin-top:10px;font-style:italic;}
-#countdown{font-size:45px;font-weight:bold;color:#fffacd;}
-@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+  <style>
+    :root{
+      --bg:#07070a;
+      --panel: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.55);
+      --pink:#ff2b79;
+      --pink2:#ff6aa2;
+      --gold:#ffd37a;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    body{
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(255,43,121,.18), transparent 55%),
+        radial-gradient(900px 500px at 80% 0%, rgba(255,211,122,.10), transparent 60%),
+        radial-gradient(900px 500px at 50% 100%, rgba(255,106,162,.12), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:980px;margin:0 auto;padding:18px;}
+    .glass{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
 
-/* Main Content */
-#main-content{display:none;width:100%;max-width:900px;text-align:center;color:#fff;}
+    /* ===== Loading / Splash ===== */
+    #loading{
+      position:fixed; inset:0; z-index:9999;
+      display:flex; align-items:center; justify-content:center;
+      background:
+        radial-gradient(1000px 700px at 30% 20%, rgba(255,43,121,.25), transparent 55%),
+        radial-gradient(900px 600px at 80% 10%, rgba(255,211,122,.14), transparent 58%),
+        #050507;
+    }
+    .loadingBox{
+      width:min(720px, 92vw);
+      padding:30px 22px;
+      text-align:center;
+      border-radius:22px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+      margin-bottom:14px;
+    }
+    .logoMark{
+      width:46px;height:46px;border-radius:14px;
+      display:inline-flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg, rgba(255,43,121,.35), rgba(255,106,162,.12));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 40px rgba(255,43,121,.18);
+      margin: 6px auto 12px;
+      font-size:22px;
+    }
+    .loadingBox h1{
+      font-size:34px; line-height:1.15; margin-bottom:10px;
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.75), #fff);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .loadingBox p{color:var(--muted); font-size:16px; line-height:1.6}
+    .countWrap{
+      margin:16px auto 0;
+      display:flex; justify-content:center; align-items:center; gap:12px;
+      color:var(--muted);
+    }
+    #countdown{
+      font-size:40px; font-weight:800;
+      color:var(--gold);
+      text-shadow: 0 0 25px rgba(255,211,122,.18);
+      width:64px;
+    }
+    .progress{
+      width:min(420px, 85vw);
+      height:10px;border-radius:999px;
+      background:rgba(255,255,255,.08);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .bar{
+      height:100%; width:0%;
+      background:linear-gradient(90deg, var(--pink), var(--pink2));
+      transition:width .22s ease;
+    }
 
-/* Verification Page */
-#verification{
-    margin-top:50px;padding:30px;background:rgba(255,255,255,0.1);
-    border-radius:20px; backdrop-filter:blur(10px); animation:fadeIn 1s ease forwards;
-}
-#verification h1{font-size:36px;margin-bottom:20px;text-shadow:2px 2px 5px #ff69b4;}
-#verification p{font-size:20px;margin-bottom:30px;}
-#verify-button{
-    background: linear-gradient(45deg,#ff69b4,#ff1493); border:none; padding:15px 30px;
-    font-size:20px;border-radius:15px;cursor:pointer;color:white;transition: transform 0.3s, box-shadow 0.3s;
-}
-#verify-button:hover{ transform:scale(1.1); box-shadow:0 0 20px rgba(255,255,255,0.5); }
+    /* ===== Header ===== */
+    header{
+      margin-top:8px;
+      padding:18px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .brand .dot{
+      width:38px;height:38px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(255,43,121,.45), rgba(255,211,122,.10));
+      border:1px solid rgba(255,255,255,.12);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 12px 45px rgba(255,43,121,.12);
+    }
+    .brand h2{font-size:16px}
+    .brand span{display:block;font-size:12px;color:var(--muted2);margin-top:2px}
+    .topCta{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+      font-weight:700;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08)}
+    .btn.primary{
+      background:linear-gradient(90deg, var(--pink), var(--pink2));
+      border:none;
+      box-shadow: 0 18px 60px rgba(255,43,121,.20);
+    }
 
-.age-warning{font-size:14px;color:#fffacd;display:flex;align-items:center;justify-content:center;gap:5px;margin-top:15px;}
-.age-warning svg{width:16px;height:16px;}
+    /* ===== Ads areas ===== */
+    .adSlot{
+      margin:14px auto 0;
+      display:flex; justify-content:center;
+      padding:10px;
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .adLabel{
+      font-size:11px;
+      color:rgba(255,255,255,.45);
+      text-align:center;
+      margin-top:6px;
+      letter-spacing:.3px;
+    }
 
-/* Private Sections */
-.private-section{
-    margin-top:30px;background:rgba(255,255,255,0.1); padding:20px; border-radius:15px;
-    backdrop-filter:blur(10px); display:none; animation:fadeIn 1s ease forwards;
-}
-.private-section button{
-    background-color:#ff69b4;color:white;border:none;padding:12px 25px;font-size:18px;
-    border-radius:10px;cursor:pointer;transition: transform 0.3s, background-color 0.3s; margin-bottom:15px;
-}
-.private-section button:hover{ transform:scale(1.1); background-color:#ff1493;}
-.images-container{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
-.images-container img{width:150px;height:150px;object-fit:cover;border-radius:15px;border:3px solid #fff;transition:transform 0.3s;}
-.images-container img:hover{transform:scale(1.1);}
+    /* ===== Hero ===== */
+    .hero{
+      margin-top:14px;
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:14px;
+    }
+    @media(max-width:860px){
+      .hero{grid-template-columns:1fr}
+    }
+    .heroLeft{padding:18px}
+    .heroTitle{
+      font-size:38px; line-height:1.1; margin-bottom:10px;
+      background:linear-gradient(90deg, #fff, rgba(255,255,255,.75), #fff);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .heroSub{
+      color:var(--muted);
+      font-size:16px; line-height:1.7;
+      max-width:52ch;
+    }
+    .tags{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px}
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+    .heroCard{
+      padding:16px;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .cover{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      position:relative;
+    }
+    .cover img{
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      filter:brightness(.88);
+      transform:scale(1.02);
+    }
+    .cover::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, transparent 25%, rgba(0,0,0,.65));
+    }
+    .coverCaption{
+      position:absolute; left:12px; right:12px; bottom:12px;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
+      z-index:2;
+    }
+    .mini{
+      font-size:12px; color:rgba(255,255,255,.78);
+      line-height:1.4;
+    }
+    .mini strong{color:#fff}
+    .pill{
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      background:rgba(255,43,121,.18);
+      border:1px solid rgba(255,43,121,.35);
+      color:#fff;
+      font-weight:800;
+      white-space:nowrap;
+    }
 
-/* Extra Content Prompt */
-#extra-content h2{font-size:24px;margin-bottom:20px;color:#fff0f5;}
-#extra-button{
-    background:linear-gradient(45deg,#ff69b4,#ff1493); border:none; padding:15px 30px;
-    font-size:20px; border-radius:15px; cursor:pointer; color:white; transition: transform 0.3s, box-shadow 0.3s; margin-top:15px;
-}
-#extra-button:hover{transform:scale(1.1); box-shadow:0 0 20px rgba(255,255,255,0.5);}
-@keyframes fadeIn{0%{opacity:0; transform:translateY(20px);}100%{opacity:1; transform:translateY(0);}}
-</style>
+    /* ===== Long content blocks ===== */
+    .section{
+      margin-top:14px;
+      padding:18px;
+    }
+    .section h3{font-size:20px;margin-bottom:10px}
+    .section p{color:var(--muted);line-height:1.85;font-size:15px}
+    .grid2{
+      display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px;
+    }
+    @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+    .card{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .card h4{font-size:15px;margin-bottom:6px}
+    .card p{font-size:14px;color:var(--muted2);line-height:1.75}
+
+    /* ===== Age gate / Verify ===== */
+    #verifyWrap{margin-top:14px}
+    .verify{
+      padding:18px;
+      text-align:center;
+    }
+    .verify h2{font-size:26px;margin-bottom:8px}
+    .verify p{color:var(--muted);line-height:1.7}
+    .verifyRow{
+      margin-top:14px;
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    }
+    .warn{
+      margin-top:10px;
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+    }
+
+    /* ===== Gallery ===== */
+    #privateArea{display:none}
+    .galleryTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom:12px;
+    }
+    .galleryTitle h3{font-size:22px}
+    .galleryTitle span{font-size:12px;color:var(--muted2)}
+    .galleryGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap:12px;
+    }
+    .imgBox{
+      border-radius:16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      position:relative;
+    }
+    .imgBox img{
+      width:100%; height:210px; object-fit:cover;
+      filter:brightness(.86);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .imgBox:hover img{transform:scale(1.05);filter:brightness(.95)}
+    .blurOverlay{
+      position:absolute; inset:auto 0 0 0;
+      padding:10px 10px;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.75));
+      color:rgba(255,255,255,.85);
+      font-size:12px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+
+    /* ===== CTA Blocks ===== */
+    .ctaBlock{
+      margin-top:14px;
+      padding:22px 18px;
+      text-align:center;
+      border-radius:22px;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,43,121,.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(255,211,122,.10), transparent 60%),
+        rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+    }
+    .ctaBlock h2{font-size:30px;margin-bottom:10px}
+    .ctaBlock p{color:var(--muted);line-height:1.75}
+    .ctaRow{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+    /* ===== Sticky footer ===== */
+    .sticky{
+      position:fixed;left:0;right:0;bottom:0;
+      z-index:999;
+      padding:10px 12px;
+      background:rgba(0,0,0,.88);
+      border-top:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .sticky small{color:rgba(255,255,255,.70);line-height:1.2}
+    .sticky .right{
+      display:flex; gap:10px; align-items:center;
+    }
+    .sticky .miniBtn{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .sticky .miniBtn.primary{
+      border:none;
+      background:linear-gradient(90deg, var(--pink), var(--pink2));
+    }
+
+    /* ===== Exit modal ===== */
+    #exitModal{
+      position:fixed; inset:0; z-index:1000;
+      background:rgba(0,0,0,.72);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:16px;
+    }
+    .exitBox{
+      width:min(620px, 94vw);
+      padding:18px;
+      border-radius:22px;
+      background:rgba(20,20,24,.92);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+    }
+    .exitBox h3{font-size:22px;margin-bottom:8px}
+    .exitBox p{color:var(--muted);line-height:1.75}
+    .exitRow{margin-top:14px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+  </style>
 </head>
+
 <body>
 
-<!-- Loading Screen -->
-<div id="loading">
-    <h1>💖</h1>
-    <p>Private Content Loading...</p>
-    <div id="countdown">5</div>
-    <span>Patience, something special is on the way! ✨</span>
-</div>
+  <!-- LOADING SCREEN -->
+  <div id="loading">
+    <div class="loadingBox glass">
+      <div class="badge">🔒 Secure • Private • Members Only</div>
+      <div class="logoMark">💎</div>
+      <h1>Preparing your exclusive access…</h1>
+      <p>
+        We’re loading the preview gallery and premium sections.
+        Stay on this page for a smoother experience.
+      </p>
+      <div class="countWrap">
+        <div id="countdown">5</div>
+        <div class="progress"><div class="bar" id="bar"></div></div>
+      </div>
+      <div style="margin-top:10px;color:rgba(255,255,255,.55);font-size:12px;">
+        Tip: scroll after unlock to view more previews and premium options.
+      </div>
+    </div>
+  </div>
 
-<!-- Main Content -->
-<div id="main-content">
+  <!-- POP/EXTRA SCRIPT (as provided) -->
+  <script src="https://pl28330359.effectivegatecpm.com/fa/c7/c4/fac7c43cc291fb94f52c0fbcb840ddd6.js"></script>
 
-    <!-- Verification Section -->
-    <div id="verification">
-        <h1>This is my private content 💗</h1>
-        <p>If you want to view it, please click the button below to verify & continue.</p>
-        <button id="verify-button">Verify & Continue</button>
-        <div class="age-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
-                <path d="M7.938 2.016a.13.13 0 0 1 .125 0l6.857 3.96c.036.02.061.057.07.097.01.04.003.082-.019.116L8.94 14.382a.13.13 0 0 1-.125.034.13.13 0 0 1-.1-.098l-1.43-6.25a.13.13 0 0 1 .03-.113l6.855-3.96zM8 5.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 1 0v-3A.5.5 0 0 0 8 5.5zm.002 5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"/>
-            </svg>
-            You must be 18+ to view this content
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="glass">
+      <div class="brand">
+        <div class="dot">✨</div>
+        <div>
+          <h2>Private Members Area</h2>
+          <span>Exclusive previews • Premium access • Updated frequently</span>
         </div>
+      </div>
+      <div class="topCta">
+        <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Open Premium</a>
+        <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock Now 🔥</a>
+      </div>
+    </header>
+
+    <!-- TOP BANNER AD 728x90 -->
+    <div class="adSlot glass" style="margin-top:14px;">
+      <script>
+        atOptions = {
+          'key' : '17781cd9ee47ed3d8493e0c03d3a3447',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/17781cd9ee47ed3d8493e0c03d3a3447/invoke.js"></script>
+    </div>
+    <div class="adLabel">Advertisement</div>
+
+    <!-- HERO -->
+    <section class="hero glass">
+      <div class="heroLeft">
+        <div class="heroTitle">Exclusive private previews — made for premium taste.</div>
+        <div class="heroSub">
+          Welcome to a members-only preview lounge. This page shows <b>limited previews</b>.
+          If you want the full experience, premium access is one click away.
+          <br><br>
+          Scroll for story, FAQ, preview gallery, and premium unlock options.
+        </div>
+        <div class="tags">
+          <div class="tag">🔒 Members Only</div>
+          <div class="tag">💎 Premium Access</div>
+          <div class="tag">📸 Preview Gallery</div>
+          <div class="tag">⚡ Fast Unlock</div>
+        </div>
+      </div>
+
+      <div class="heroCard glass" style="box-shadow:none;border:none;background:transparent;padding:0;">
+        <div class="cover">
+          <img src="https://i.imgur.com/WP73fM4.jpeg" alt="Cover" loading="eager">
+          <div class="coverCaption">
+            <div class="mini">
+              <strong>Private Preview</strong><br>
+              Short previews • Premium available
+            </div>
+            <div class="pill">18+ Only</div>
+          </div>
+        </div>
+        <a class="btn primary" style="width:100%;padding:14px 16px;font-size:16px;"
+           href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">
+          Continue to Premium ➜
+        </a>
+        <div style="text-align:center;color:rgba(255,255,255,.55);font-size:12px;">
+          Premium access opens full content.
+        </div>
+      </div>
+    </section>
+
+    <!-- LONG CONTENT SECTION (for dwell time) -->
+    <section class="section glass">
+      <h3>Inside this page</h3>
+      <p>
+        This is a curated preview space designed to keep everything clean, smooth, and premium-looking.
+        You’ll see limited teaser images and sections. After verification, preview blocks will unlock.
+        <br><br>
+        If you’re the type who enjoys private, exclusive vibes — you’ll probably like what’s next.
+        For the full experience, use the premium button whenever you’re ready.
+      </p>
+
+      <div class="grid2">
+        <div class="card">
+          <h4>Why the verification?</h4>
+          <p>To keep the page safe and filtered for adults only. It also helps keep the premium flow clean.</p>
+        </div>
+        <div class="card">
+          <h4>What’s included in premium?</h4>
+          <p>More content, more updates, and access to the full private experience beyond previews.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MID AD (EffectiveGate CPM invoke container) -->
+    <div class="adSlot glass">
+      <script async="async" data-cfasync="false" src="https://pl28330365.effectivegatecpm.com/01f0c9537a663937b29060e419b16fd5/invoke.js"></script>
+      <div id="container-01f0c9537a663937b29060e419b16fd5"></div>
+    </div>
+    <div class="adLabel">Advertisement</div>
+
+    <!-- VERIFY (AGE GATE) -->
+    <section id="verifyWrap" class="glass verify">
+      <h2>Age Verification Required</h2>
+      <p>
+        This page contains adult-themed premium previews. Please confirm you are <b>18+</b> to continue.
+      </p>
+      <div class="verifyRow">
+        <button class="btn primary" id="verifyBtn">I’m 18+ • Verify & Continue</button>
+        <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Skip to Premium</a>
+      </div>
+      <div class="warn">By continuing you confirm you are 18+ and agree to view adult-themed previews.</div>
+    </section>
+
+    <!-- PRIVATE AREA (UNLOCKED AFTER VERIFY) -->
+    <div id="privateArea">
+
+      <!-- 300x250 AD (HighPerformanceFormat) -->
+      <div class="adSlot glass" style="margin-top:14px;">
+        <script>
+          atOptions = {
+            'key' : '2ee604b5031b4d76c2ca37b78bb857d2',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/2ee604b5031b4d76c2ca37b78bb857d2/invoke.js"></script>
+      </div>
+      <div class="adLabel">Advertisement</div>
+
+      <section class="section glass">
+        <div class="galleryTitle">
+          <h3>Preview Gallery (Limited)</h3>
+          <span>Unlocked • scroll for more</span>
+        </div>
+
+        <div class="galleryGrid" id="galleryGrid"></div>
+      </section>
+
+      <section class="section glass">
+        <h3>FAQ</h3>
+        <div class="grid2">
+          <div class="card">
+            <h4>Is this the full content?</h4>
+            <p>No — this page shows previews only. Premium access opens the full experience.</p>
+          </div>
+          <div class="card">
+            <h4>Why is the page long?</h4>
+            <p>To make the experience feel premium, readable, and story-driven — not just a “blank landing page”.</p>
+          </div>
+          <div class="card">
+            <h4>How do I unlock premium?</h4>
+            <p>Tap any “Unlock” button. It will take you to the premium smartlink.</p>
+          </div>
+          <div class="card">
+            <h4>Does it work on mobile?</h4>
+            <p>Yes. Layout is responsive and optimized for mobile scrolling.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA BLOCK -->
+      <section class="ctaBlock">
+        <h2>Ready for the full experience?</h2>
+        <p>
+          Premium access gives you more content, more updates, and the complete private section.
+          If you’re here — you already know what you want 😉
+        </p>
+        <div class="ctaRow">
+          <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock Premium 🔥</a>
+          <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Continue ➜</a>
+        </div>
+      </section>
+
     </div>
 
-    <!-- Private Sections -->
-    <div class="private-section" id="content1">
-        <button>My Private Content 1</button>
-        <div class="images-container" id="images-content1"></div>
+    <div style="height:70px"></div>
+  </div>
+
+  <!-- Sticky CTA -->
+  <div class="sticky">
+    <small><b>Exclusive access</b><br><span style="color:rgba(255,255,255,.55)">Premium unlock available</span></small>
+    <div class="right">
+      <button class="miniBtn" id="openExit">Offers</button>
+      <a class="miniBtn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock ➜</a>
     </div>
+  </div>
 
-    <div class="private-section" id="content2">
-        <button>My Private Content 2</button>
-        <div class="images-container" id="images-content2"></div>
+  <!-- Exit Modal -->
+  <div id="exitModal">
+    <div class="exitBox">
+      <h3>Wait — your premium unlock is ready 💎</h3>
+      <p>
+        Want to continue to the premium page now? You’ll get the full private access beyond previews.
+      </p>
+      <div class="exitRow">
+        <button class="btn" id="closeExit">Not now</button>
+        <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Go Premium ➜</a>
+      </div>
     </div>
+  </div>
 
-    <div class="private-section" id="content3">
-        <button>My Private Content 3</button>
-        <div class="images-container" id="images-content3"></div>
-    </div>
+  <script>
+    // ===== Photos (your original Imgur sets) =====
+    const photos = [
+      'https://i.imgur.com/KwCYalc.jpeg',
+      'https://i.imgur.com/EaryFnf.jpeg',
+      'https://i.imgur.com/lswriLj.jpeg',
+      'https://i.imgur.com/HEN3gqF.jpeg',
+      'https://i.imgur.com/FyGQZ6O.jpeg',
+      'https://i.imgur.com/G9OJ7lr.jpeg',
+      'https://i.imgur.com/MYJSlxC.jpeg',
+      'https://i.imgur.com/gAEan50.jpeg',
+      'https://i.imgur.com/jV9W1Fj.jpeg'
+    ];
 
-    <!-- Extra Content Prompt -->
-    <div class="private-section" id="extra-content">
-        <h2>Do you want to see even better content? 💖😏</h2>
-        <button id="extra-button">Click here, darling</button>
-    </div>
+    // ===== Loading countdown =====
+    let countdown = 5;
+    const cd = document.getElementById('countdown');
+    const loading = document.getElementById('loading');
+    const bar = document.getElementById('bar');
 
-</div>
+    const tick = setInterval(() => {
+      countdown--;
+      cd.textContent = countdown;
+      bar.style.width = ((5 - countdown) / 5) * 100 + '%';
 
-<script>
-let countdown = 5;
-const countdownElement = document.getElementById('countdown');
-const loadingScreen = document.getElementById('loading');
-const mainContent = document.getElementById('main-content');
-const verifyButton = document.getElementById('verify-button');
-const extraContent = document.getElementById('extra-content');
-const extraButton = document.getElementById('extra-button');
+      if (countdown <= 0) {
+        clearInterval(tick);
+        loading.style.display = 'none';
+      }
+    }, 1000);
 
-extraContent.style.display = 'none';
+    // ===== Build gallery only after verify (performance + viewability) =====
+    function buildGallery(){
+      const grid = document.getElementById('galleryGrid');
+      if(!grid || grid.dataset.built === "1") return;
+      grid.dataset.built = "1";
 
-// Foto tiap content (pakai link Imgur)
-const photos = {
-    content1: [
-        'https://i.imgur.com/KwCYalc.jpeg',
-        'https://i.imgur.com/EaryFnf.jpeg',
-        'https://i.imgur.com/lswriLj.jpeg'
-    ],
-    content2: [
-        'https://i.imgur.com/HEN3gqF.jpeg',
-        'https://i.imgur.com/FyGQZ6O.jpeg',
-        'https://i.imgur.com/G9OJ7lr.jpeg'
-    ],
-    content3: [
-        'https://i.imgur.com/MYJSlxC.jpeg',
-        'https://i.imgur.com/gAEan50.jpeg',
-        'https://i.imgur.com/jV9W1Fj.jpeg'
-    ]
-};
+      photos.forEach((src, idx) => {
+        const box = document.createElement('div');
+        box.className = 'imgBox';
 
-// Fungsi tampilkan foto
-function displayPhotos(contentId, photoArray){
-    const container = document.getElementById('images-' + contentId);
-    photoArray.forEach(photo => {
         const img = document.createElement('img');
-        img.src = photo;
-        img.alt = 'Private Photo';
-        container.appendChild(img);
+        img.src = src;
+        img.alt = 'Preview ' + (idx+1);
+        img.loading = 'lazy';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'blurOverlay';
+        overlay.innerHTML = `<span>Preview ${idx+1}</span><span>🔒 Premium</span>`;
+
+        box.appendChild(img);
+        box.appendChild(overlay);
+        grid.appendChild(box);
+      });
+    }
+
+    // ===== Verify button =====
+    const verifyBtn = document.getElementById('verifyBtn');
+    const privateArea = document.getElementById('privateArea');
+
+    verifyBtn.addEventListener('click', () => {
+      privateArea.style.display = 'block';
+      buildGallery();
+
+      // smooth scroll to gallery
+      setTimeout(() => {
+        privateArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+
+      // hide verify area for cleaner UX
+      document.getElementById('verifyWrap').style.display = 'none';
     });
-}
 
-// Countdown loading
-const interval = setInterval(() => {
-    countdown--;
-    countdownElement.textContent = countdown;
-    if(countdown === 0){
-        clearInterval(interval);
-        loadingScreen.style.display = 'none';
-        mainContent.style.display = 'block';
-    }
-}, 1000);
+    // ===== Exit modal triggers =====
+    const exitModal = document.getElementById('exitModal');
+    const openExit = document.getElementById('openExit');
+    const closeExit = document.getElementById('closeExit');
 
-// Verify & Continue
-verifyButton.addEventListener('click', () => {
-    for(const contentId in photos){
-        displayPhotos(contentId, photos[contentId]);
-    }
-    document.querySelectorAll('.private-section').forEach(section => section.style.display = 'block');
-    extraContent.style.display = 'block';
-    verifyButton.style.display = 'none';
-});
+    openExit.addEventListener('click', () => exitModal.style.display = 'flex');
+    closeExit.addEventListener('click', () => exitModal.style.display = 'none');
 
-// Extra button action
-extraButton.addEventListener('click', () => {
-    alert("Sayang, konten lebih bagus siap ditampilkan!");
-    // Bisa diganti redirect ke halaman lain
-});
-</script>
-
+    // Optional: exit-intent (desktop only)
+    let exitShown = false;
+    document.addEventListener('mouseout', (e) => {
+      if(exitShown) return;
+      if (e.clientY <= 0) {
+        exitShown = true;
+        exitModal.style.display = 'flex';
+      }
+    });
+  </script>
 </body>
 </html>
