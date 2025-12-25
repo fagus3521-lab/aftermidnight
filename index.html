@@ -52,7 +52,6 @@
       backdrop-filter: blur(10px);
     }
 
-    /* Header */
     header{
       margin-top:8px;
       padding:18px 16px;
@@ -69,6 +68,7 @@
     .brand h2{font-size:16px}
     .brand span{display:block;font-size:12px;color:var(--muted2);margin-top:2px}
     .topCta{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px;
@@ -88,7 +88,6 @@
       box-shadow: 0 18px 60px rgba(255,43,121,.20);
     }
 
-    /* Ads */
     .adSlot{
       margin:14px auto 0;
       display:flex; justify-content:center;
@@ -106,7 +105,6 @@
       letter-spacing:.3px;
     }
 
-    /* Hero */
     .hero{
       margin-top:14px;
       padding:18px;
@@ -158,7 +156,6 @@
       color:#fff; font-weight:800; white-space:nowrap;
     }
 
-    /* Sections */
     .section{margin-top:14px; padding:18px;}
     .section h3{font-size:20px;margin-bottom:10px}
     .section p{color:var(--muted);line-height:1.85;font-size:15px}
@@ -169,6 +166,30 @@
     .verify p{color:var(--muted);line-height:1.7}
     .verifyRow{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
     .warn{margin-top:10px;font-size:12px;color:rgba(255,255,255,.55);}
+
+    /* NEW: clearer lock hint */
+    .lockHint{
+      margin-top:12px;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:999px;
+      color:rgba(255,255,255,.75);
+      font-size:13px;
+    }
+    .pulseArrow{
+      display:inline-block;
+      animation: bounce 1s infinite;
+      opacity:.9;
+    }
+    @keyframes bounce{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-3px)}
+    }
 
     /* Collections */
     .collectionHead{
@@ -203,7 +224,6 @@
       display:flex; justify-content:space-between; align-items:center;
     }
 
-    /* CTA block */
     .ctaBlock{
       margin-top:14px;
       padding:22px 18px;
@@ -219,7 +239,6 @@
     .ctaBlock p{color:var(--muted);line-height:1.75}
     .ctaRow{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-    /* Sticky */
     .sticky{
       position:fixed;left:0;right:0;bottom:0;
       z-index:999;
@@ -242,7 +261,6 @@
       background:linear-gradient(90deg, var(--pink), var(--pink2));
     }
 
-    /* Exit modal */
     #exitModal{
       position:fixed; inset:0; z-index:1000;
       background:rgba(0,0,0,.72);
@@ -303,15 +321,15 @@
       <div class="heroLeft">
         <div class="heroTitle">Exclusive private previews — made for premium taste.</div>
         <div class="heroSub">
-          Welcome to a members-only preview lounge. This page shows <b>limited previews</b>.
-          If you want the full experience, premium access is one click away.
+          This page shows <b>limited previews</b>. To see the preview images,
+          unlock them below with the button.
           <br><br>
-          Scroll for collections, FAQ, and premium unlock options.
+          Scroll down to the verification button to reveal the photos.
         </div>
         <div class="tags">
           <div class="tag">🔒 Members Only</div>
           <div class="tag">💎 Premium Access</div>
-          <div class="tag">📸 Preview Gallery</div>
+          <div class="tag">📸 Preview Collections</div>
           <div class="tag">⚡ Fast Unlock</div>
         </div>
       </div>
@@ -322,7 +340,7 @@
           <div class="coverCaption">
             <div class="mini">
               <strong>Private Preview</strong><br>
-              Short previews • Premium available
+              Tap unlock to reveal images
             </div>
             <div class="pill">18+ Only</div>
           </div>
@@ -342,8 +360,8 @@
     <section class="section glass">
       <h3>Inside this page</h3>
       <p>
-        This is a curated preview space designed to keep everything clean, smooth, and premium-looking.
-        You’ll see limited teaser images and collections. After verification, all preview blocks will unlock.
+        You’ll see collections after unlock. This helps keep the page clean,
+        faster to load, and easier to browse on mobile.
       </p>
     </section>
 
@@ -354,14 +372,28 @@
     </div>
     <div class="adLabel">Advertisement</div>
 
-    <!-- VERIFY -->
+    <!-- VERIFY (UPDATED: SUPER CLEAR BUTTON) -->
     <section id="verifyWrap" class="glass verify">
-      <h2>Age Verification Required</h2>
-      <p>This page contains adult-themed premium previews. Please confirm you are <b>18+</b> to continue.</p>
+      <h2>Unlock Preview Photos</h2>
+      <p>
+        Click the button below to <b>show the preview images</b>.
+        Confirm you are <b>18+</b> to continue.
+      </p>
+
+      <div class="lockHint">
+        🔒 <b>9</b> preview images locked
+        <span class="pulseArrow">⬇️</span>
+      </div>
+
       <div class="verifyRow">
-        <button class="btn primary" id="verifyBtn">I’m 18+ • Verify & Continue</button>
+        <button class="btn primary" id="verifyBtn">🔓 Show Private Photos (18+)</button>
         <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Skip to Premium</a>
       </div>
+
+      <div style="margin-top:8px;font-size:13px;color:rgba(255,255,255,.65)">
+        After clicking, the collections will appear below.
+      </div>
+
       <div class="warn">By continuing you confirm you are 18+ and agree to view adult-themed previews.</div>
     </section>
 
@@ -410,15 +442,6 @@
         <div class="grid" id="collection3"></div>
       </section>
 
-      <!-- FAQ -->
-      <section class="section glass">
-        <h3>FAQ</h3>
-        <p style="color:rgba(255,255,255,.72)">
-          This page shows previews only. Premium access opens the full experience.
-          Tap any “Unlock” button to continue to the premium smartlink.
-        </p>
-      </section>
-
       <!-- CTA -->
       <section class="ctaBlock">
         <h2>Ready for the full experience?</h2>
@@ -455,19 +478,17 @@
   </div>
 
   <script>
-    // Collections (UPDATED with your valid links ✅)
+    // Collections (your links ✅)
     const collection1 = [
       "https://i.imgur.com/cbXabVg.jpeg",
       "https://i.imgur.com/214K5TV.jpeg",
       "https://i.imgur.com/Y9Zdj11.jpeg"
     ];
-
     const collection2 = [
       "https://i.imgur.com/sL0Q2u4.jpeg",
       "https://i.imgur.com/Q0rE8Bj.jpeg",
       "https://i.imgur.com/tovXIsB.jpeg"
     ];
-
     const collection3 = [
       "https://i.imgur.com/eJXLzr3.jpeg",
       "https://i.imgur.com/SWffOkG.jpeg",
