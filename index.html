@@ -28,7 +28,6 @@
       --muted2: rgba(255,255,255,.55);
       --pink:#ff2b79;
       --pink2:#ff6aa2;
-      --gold:#ffd37a;
       --shadow: 0 18px 60px rgba(0,0,0,.55);
       --radius: 18px;
     }
@@ -36,8 +35,8 @@
     body{
       background:
         radial-gradient(1200px 600px at 20% 10%, rgba(255,43,121,.18), transparent 55%),
-        radial-gradient(900px 500px at 80% 0%, rgba(255,211,122,.10), transparent 60%),
-        radial-gradient(900px 500px at 50% 100%, rgba(255,106,162,.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(255,106,162,.12), transparent 60%),
+        radial-gradient(900px 500px at 50% 100%, rgba(255,106,162,.10), transparent 60%),
         var(--bg);
       color:var(--text);
       min-height:100vh;
@@ -53,90 +52,23 @@
       backdrop-filter: blur(10px);
     }
 
-    /* ===== Loading / Splash ===== */
-    #loading{
-      position:fixed; inset:0; z-index:9999;
-      display:flex; align-items:center; justify-content:center;
-      background:
-        radial-gradient(1000px 700px at 30% 20%, rgba(255,43,121,.25), transparent 55%),
-        radial-gradient(900px 600px at 80% 10%, rgba(255,211,122,.14), transparent 58%),
-        #050507;
-    }
-    .loadingBox{
-      width:min(720px, 92vw);
-      padding:30px 22px;
-      text-align:center;
-      border-radius:22px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 14px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      font-size:13px; color:var(--muted);
-      margin-bottom:14px;
-    }
-    .logoMark{
-      width:46px;height:46px;border-radius:14px;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg, rgba(255,43,121,.35), rgba(255,106,162,.12));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: 0 10px 40px rgba(255,43,121,.18);
-      margin: 6px auto 12px;
-      font-size:22px;
-    }
-    .loadingBox h1{
-      font-size:34px; line-height:1.15; margin-bottom:10px;
-      background: linear-gradient(90deg, #fff, rgba(255,255,255,.75), #fff);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    }
-    .loadingBox p{color:var(--muted); font-size:16px; line-height:1.6}
-    .countWrap{
-      margin:16px auto 0;
-      display:flex; justify-content:center; align-items:center; gap:12px;
-      color:var(--muted);
-    }
-    #countdown{
-      font-size:40px; font-weight:800;
-      color:var(--gold);
-      text-shadow: 0 0 25px rgba(255,211,122,.18);
-      width:64px;
-    }
-    .progress{
-      width:min(420px, 85vw);
-      height:10px;border-radius:999px;
-      background:rgba(255,255,255,.08);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-    }
-    .bar{
-      height:100%; width:0%;
-      background:linear-gradient(90deg, var(--pink), var(--pink2));
-      transition:width .22s ease;
-    }
-
-    /* ===== Header ===== */
+    /* Header */
     header{
       margin-top:8px;
       padding:18px 16px;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-    }
+    .brand{display:flex; align-items:center; gap:12px;}
     .brand .dot{
       width:38px;height:38px;border-radius:14px;
-      background:linear-gradient(135deg, rgba(255,43,121,.45), rgba(255,211,122,.10));
+      background:linear-gradient(135deg, rgba(255,43,121,.45), rgba(255,106,162,.12));
       border:1px solid rgba(255,255,255,.12);
       display:flex; align-items:center; justify-content:center;
       box-shadow: 0 12px 45px rgba(255,43,121,.12);
     }
     .brand h2{font-size:16px}
     .brand span{display:block;font-size:12px;color:var(--muted2);margin-top:2px}
-    .topCta{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
+    .topCta{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 16px;
@@ -145,7 +77,7 @@
       background:rgba(255,255,255,.06);
       color:var(--text);
       cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border .15s ease;
+      transition: transform .15s ease, background .15s ease;
       font-weight:700;
       user-select:none;
     }
@@ -156,7 +88,7 @@
       box-shadow: 0 18px 60px rgba(255,43,121,.20);
     }
 
-    /* ===== Ads areas ===== */
+    /* Ads */
     .adSlot{
       margin:14px auto 0;
       display:flex; justify-content:center;
@@ -174,7 +106,7 @@
       letter-spacing:.3px;
     }
 
-    /* ===== Hero ===== */
+    /* Hero */
     .hero{
       margin-top:14px;
       padding:18px;
@@ -182,20 +114,14 @@
       grid-template-columns: 1.3fr .7fr;
       gap:14px;
     }
-    @media(max-width:860px){
-      .hero{grid-template-columns:1fr}
-    }
+    @media(max-width:860px){ .hero{grid-template-columns:1fr} }
     .heroLeft{padding:18px}
     .heroTitle{
       font-size:38px; line-height:1.1; margin-bottom:10px;
       background:linear-gradient(90deg, #fff, rgba(255,255,255,.75), #fff);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
-    .heroSub{
-      color:var(--muted);
-      font-size:16px; line-height:1.7;
-      max-width:52ch;
-    }
+    .heroSub{color:var(--muted); font-size:16px; line-height:1.7; max-width:52ch;}
     .tags{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px}
     .tag{
       padding:8px 12px;
@@ -205,27 +131,18 @@
       color:var(--muted);
       font-size:12px;
     }
-    .heroCard{
-      padding:16px;
-      display:flex; flex-direction:column; gap:12px;
-    }
     .cover{
-      border-radius:16px;
-      overflow:hidden;
+      border-radius:16px; overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.04);
       position:relative;
     }
     .cover img{
-      width:100%;
-      height:210px;
-      object-fit:cover;
-      filter:brightness(.88);
-      transform:scale(1.02);
+      width:100%; height:210px; object-fit:cover;
+      filter:brightness(.88); transform:scale(1.02);
     }
     .cover::after{
-      content:"";
-      position:absolute; inset:0;
+      content:""; position:absolute; inset:0;
       background:linear-gradient(180deg, transparent 25%, rgba(0,0,0,.65));
     }
     .coverCaption{
@@ -233,71 +150,36 @@
       display:flex; justify-content:space-between; align-items:flex-end; gap:10px;
       z-index:2;
     }
-    .mini{
-      font-size:12px; color:rgba(255,255,255,.78);
-      line-height:1.4;
-    }
-    .mini strong{color:#fff}
+    .mini{font-size:12px; color:rgba(255,255,255,.78); line-height:1.4;}
     .pill{
-      padding:7px 10px;
-      border-radius:999px;
-      font-size:12px;
+      padding:7px 10px; border-radius:999px; font-size:12px;
       background:rgba(255,43,121,.18);
       border:1px solid rgba(255,43,121,.35);
-      color:#fff;
-      font-weight:800;
-      white-space:nowrap;
+      color:#fff; font-weight:800; white-space:nowrap;
     }
 
-    /* ===== Long content blocks ===== */
-    .section{
-      margin-top:14px;
-      padding:18px;
-    }
+    /* Sections */
+    .section{margin-top:14px; padding:18px;}
     .section h3{font-size:20px;margin-bottom:10px}
     .section p{color:var(--muted);line-height:1.85;font-size:15px}
-    .grid2{
-      display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px;
-    }
-    @media(max-width:860px){.grid2{grid-template-columns:1fr}}
-    .card{
-      padding:16px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-    }
-    .card h4{font-size:15px;margin-bottom:6px}
-    .card p{font-size:14px;color:var(--muted2);line-height:1.75}
 
-    /* ===== Age gate / Verify ===== */
-    #verifyWrap{margin-top:14px}
-    .verify{
-      padding:18px;
-      text-align:center;
-    }
+    /* Verify */
+    .verify{padding:18px;text-align:center;}
     .verify h2{font-size:26px;margin-bottom:8px}
     .verify p{color:var(--muted);line-height:1.7}
-    .verifyRow{
-      margin-top:14px;
-      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
-    }
-    .warn{
-      margin-top:10px;
-      font-size:12px;
-      color:rgba(255,255,255,.55);
-    }
+    .verifyRow{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+    .warn{margin-top:10px;font-size:12px;color:rgba(255,255,255,.55);}
 
-    /* ===== Gallery ===== */
-    #privateArea{display:none}
-    .galleryTitle{
+    /* Collections */
+    .collectionHead{
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
       margin-bottom:12px;
     }
-    .galleryTitle h3{font-size:22px}
-    .galleryTitle span{font-size:12px;color:var(--muted2)}
-    .galleryGrid{
+    .collectionHead h3{font-size:22px}
+    .collectionHead span{font-size:12px;color:var(--muted2)}
+    .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
       gap:12px;
     }
     .imgBox{
@@ -307,21 +189,21 @@
       position:relative;
     }
     .imgBox img{
-      width:100%; height:210px; object-fit:cover;
+      width:100%; height:230px; object-fit:cover;
       filter:brightness(.86);
       transition: transform .18s ease, filter .18s ease;
     }
     .imgBox:hover img{transform:scale(1.05);filter:brightness(.95)}
-    .blurOverlay{
+    .overlay{
       position:absolute; inset:auto 0 0 0;
       padding:10px 10px;
-      background:linear-gradient(180deg, transparent, rgba(0,0,0,.75));
-      color:rgba(255,255,255,.85);
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.78));
+      color:rgba(255,255,255,.88);
       font-size:12px;
       display:flex; justify-content:space-between; align-items:center;
     }
 
-    /* ===== CTA Blocks ===== */
+    /* CTA block */
     .ctaBlock{
       margin-top:14px;
       padding:22px 18px;
@@ -329,7 +211,6 @@
       border-radius:22px;
       background:
         radial-gradient(900px 500px at 20% 0%, rgba(255,43,121,.22), transparent 60%),
-        radial-gradient(900px 500px at 80% 0%, rgba(255,211,122,.10), transparent 60%),
         rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
@@ -338,7 +219,7 @@
     .ctaBlock p{color:var(--muted);line-height:1.75}
     .ctaRow{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-    /* ===== Sticky footer ===== */
+    /* Sticky */
     .sticky{
       position:fixed;left:0;right:0;bottom:0;
       z-index:999;
@@ -346,36 +227,26 @@
       background:rgba(0,0,0,.88);
       border-top:1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(10px);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
     .sticky small{color:rgba(255,255,255,.70);line-height:1.2}
-    .sticky .right{
-      display:flex; gap:10px; align-items:center;
-    }
+    .sticky .right{display:flex; gap:10px; align-items:center;}
     .sticky .miniBtn{
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 14px; border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
-      color:#fff;
-      font-weight:800;
-      cursor:pointer;
-      white-space:nowrap;
+      color:#fff; font-weight:800; cursor:pointer; white-space:nowrap;
     }
     .sticky .miniBtn.primary{
       border:none;
       background:linear-gradient(90deg, var(--pink), var(--pink2));
     }
 
-    /* ===== Exit modal ===== */
+    /* Exit modal */
     #exitModal{
       position:fixed; inset:0; z-index:1000;
       background:rgba(0,0,0,.72);
-      display:none;
-      align-items:center; justify-content:center;
+      display:none; align-items:center; justify-content:center;
       padding:16px;
     }
     .exitBox{
@@ -386,33 +257,11 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
     }
-    .exitBox h3{font-size:22px;margin-bottom:8px}
-    .exitBox p{color:var(--muted);line-height:1.75}
     .exitRow{margin-top:14px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
   </style>
 </head>
 
 <body>
-
-  <!-- LOADING SCREEN -->
-  <div id="loading">
-    <div class="loadingBox glass">
-      <div class="badge">🔒 Secure • Private • Members Only</div>
-      <div class="logoMark">💎</div>
-      <h1>Preparing your exclusive access…</h1>
-      <p>
-        We’re loading the preview gallery and premium sections.
-        Stay on this page for a smoother experience.
-      </p>
-      <div class="countWrap">
-        <div id="countdown">5</div>
-        <div class="progress"><div class="bar" id="bar"></div></div>
-      </div>
-      <div style="margin-top:10px;color:rgba(255,255,255,.55);font-size:12px;">
-        Tip: scroll after unlock to view more previews and premium options.
-      </div>
-    </div>
-  </div>
 
   <!-- POP/EXTRA SCRIPT (as provided) -->
   <script src="https://pl28330359.effectivegatecpm.com/fa/c7/c4/fac7c43cc291fb94f52c0fbcb840ddd6.js"></script>
@@ -457,7 +306,7 @@
           Welcome to a members-only preview lounge. This page shows <b>limited previews</b>.
           If you want the full experience, premium access is one click away.
           <br><br>
-          Scroll for story, FAQ, preview gallery, and premium unlock options.
+          Scroll for collections, FAQ, and premium unlock options.
         </div>
         <div class="tags">
           <div class="tag">🔒 Members Only</div>
@@ -467,7 +316,7 @@
         </div>
       </div>
 
-      <div class="heroCard glass" style="box-shadow:none;border:none;background:transparent;padding:0;">
+      <div class="glass" style="box-shadow:none;border:none;background:transparent;padding:0;display:flex;flex-direction:column;gap:12px;">
         <div class="cover">
           <img src="https://i.imgur.com/WP73fM4.jpeg" alt="Cover" loading="eager">
           <div class="coverCaption">
@@ -478,6 +327,7 @@
             <div class="pill">18+ Only</div>
           </div>
         </div>
+
         <a class="btn primary" style="width:100%;padding:14px 16px;font-size:16px;"
            href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">
           Continue to Premium ➜
@@ -488,27 +338,13 @@
       </div>
     </section>
 
-    <!-- LONG CONTENT SECTION (for dwell time) -->
+    <!-- LONG CONTENT -->
     <section class="section glass">
       <h3>Inside this page</h3>
       <p>
         This is a curated preview space designed to keep everything clean, smooth, and premium-looking.
-        You’ll see limited teaser images and sections. After verification, preview blocks will unlock.
-        <br><br>
-        If you’re the type who enjoys private, exclusive vibes — you’ll probably like what’s next.
-        For the full experience, use the premium button whenever you’re ready.
+        You’ll see limited teaser images and collections. After verification, all preview blocks will unlock.
       </p>
-
-      <div class="grid2">
-        <div class="card">
-          <h4>Why the verification?</h4>
-          <p>To keep the page safe and filtered for adults only. It also helps keep the premium flow clean.</p>
-        </div>
-        <div class="card">
-          <h4>What’s included in premium?</h4>
-          <p>More content, more updates, and access to the full private experience beyond previews.</p>
-        </div>
-      </div>
     </section>
 
     <!-- MID AD (EffectiveGate CPM invoke container) -->
@@ -518,12 +354,10 @@
     </div>
     <div class="adLabel">Advertisement</div>
 
-    <!-- VERIFY (AGE GATE) -->
+    <!-- VERIFY -->
     <section id="verifyWrap" class="glass verify">
       <h2>Age Verification Required</h2>
-      <p>
-        This page contains adult-themed premium previews. Please confirm you are <b>18+</b> to continue.
-      </p>
+      <p>This page contains adult-themed premium previews. Please confirm you are <b>18+</b> to continue.</p>
       <div class="verifyRow">
         <button class="btn primary" id="verifyBtn">I’m 18+ • Verify & Continue</button>
         <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Skip to Premium</a>
@@ -531,10 +365,10 @@
       <div class="warn">By continuing you confirm you are 18+ and agree to view adult-themed previews.</div>
     </section>
 
-    <!-- PRIVATE AREA (UNLOCKED AFTER VERIFY) -->
-    <div id="privateArea">
+    <!-- PRIVATE AREA -->
+    <div id="privateArea" style="display:none;">
 
-      <!-- 300x250 AD (HighPerformanceFormat) -->
+      <!-- 300x250 AD -->
       <div class="adSlot glass" style="margin-top:14px;">
         <script>
           atOptions = {
@@ -549,50 +383,51 @@
       </div>
       <div class="adLabel">Advertisement</div>
 
+      <!-- COLLECTION 1 -->
       <section class="section glass">
-        <div class="galleryTitle">
-          <h3>Preview Gallery (Limited)</h3>
-          <span>Unlocked • scroll for more</span>
+        <div class="collectionHead">
+          <h3>My Collection 1</h3>
+          <span>Unlocked • Preview only</span>
         </div>
-
-        <div class="galleryGrid" id="galleryGrid"></div>
+        <div class="grid" id="collection1"></div>
       </section>
 
+      <!-- COLLECTION 2 -->
+      <section class="section glass">
+        <div class="collectionHead">
+          <h3>My Collection 2</h3>
+          <span>Unlocked • Preview only</span>
+        </div>
+        <div class="grid" id="collection2"></div>
+      </section>
+
+      <!-- COLLECTION 3 -->
+      <section class="section glass">
+        <div class="collectionHead">
+          <h3>My Collection 3</h3>
+          <span>Unlocked • Preview only</span>
+        </div>
+        <div class="grid" id="collection3"></div>
+      </section>
+
+      <!-- FAQ -->
       <section class="section glass">
         <h3>FAQ</h3>
-        <div class="grid2">
-          <div class="card">
-            <h4>Is this the full content?</h4>
-            <p>No — this page shows previews only. Premium access opens the full experience.</p>
-          </div>
-          <div class="card">
-            <h4>Why is the page long?</h4>
-            <p>To make the experience feel premium, readable, and story-driven — not just a “blank landing page”.</p>
-          </div>
-          <div class="card">
-            <h4>How do I unlock premium?</h4>
-            <p>Tap any “Unlock” button. It will take you to the premium smartlink.</p>
-          </div>
-          <div class="card">
-            <h4>Does it work on mobile?</h4>
-            <p>Yes. Layout is responsive and optimized for mobile scrolling.</p>
-          </div>
-        </div>
+        <p style="color:rgba(255,255,255,.72)">
+          This page shows previews only. Premium access opens the full experience.
+          Tap any “Unlock” button to continue to the premium smartlink.
+        </p>
       </section>
 
-      <!-- CTA BLOCK -->
+      <!-- CTA -->
       <section class="ctaBlock">
         <h2>Ready for the full experience?</h2>
-        <p>
-          Premium access gives you more content, more updates, and the complete private section.
-          If you’re here — you already know what you want 😉
-        </p>
+        <p>Premium access gives you more content, more updates, and the complete private section.</p>
         <div class="ctaRow">
           <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock Premium 🔥</a>
           <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Continue ➜</a>
         </div>
       </section>
-
     </div>
 
     <div style="height:70px"></div>
@@ -611,9 +446,7 @@
   <div id="exitModal">
     <div class="exitBox">
       <h3>Wait — your premium unlock is ready 💎</h3>
-      <p>
-        Want to continue to the premium page now? You’ll get the full private access beyond previews.
-      </p>
+      <p>Want to continue to the premium page now? You’ll get the full private access beyond previews.</p>
       <div class="exitRow">
         <button class="btn" id="closeExit">Not now</button>
         <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Go Premium ➜</a>
@@ -622,87 +455,70 @@
   </div>
 
   <script>
-    // ===== Photos (your original Imgur sets) =====
-    const photos = [
-      'https://i.imgur.com/KwCYalc.jpeg',
-      'https://i.imgur.com/EaryFnf.jpeg',
-      'https://i.imgur.com/lswriLj.jpeg',
-      'https://i.imgur.com/HEN3gqF.jpeg',
-      'https://i.imgur.com/FyGQZ6O.jpeg',
-      'https://i.imgur.com/G9OJ7lr.jpeg',
-      'https://i.imgur.com/MYJSlxC.jpeg',
-      'https://i.imgur.com/gAEan50.jpeg',
-      'https://i.imgur.com/jV9W1Fj.jpeg'
+    // Collections (UPDATED with your valid links ✅)
+    const collection1 = [
+      "https://i.imgur.com/cbXabVg.jpeg",
+      "https://i.imgur.com/214K5TV.jpeg",
+      "https://i.imgur.com/Y9Zdj11.jpeg"
     ];
 
-    // ===== Loading countdown =====
-    let countdown = 5;
-    const cd = document.getElementById('countdown');
-    const loading = document.getElementById('loading');
-    const bar = document.getElementById('bar');
+    const collection2 = [
+      "https://i.imgur.com/sL0Q2u4.jpeg",
+      "https://i.imgur.com/Q0rE8Bj.jpeg",
+      "https://i.imgur.com/tovXIsB.jpeg"
+    ];
 
-    const tick = setInterval(() => {
-      countdown--;
-      cd.textContent = countdown;
-      bar.style.width = ((5 - countdown) / 5) * 100 + '%';
+    const collection3 = [
+      "https://i.imgur.com/eJXLzr3.jpeg",
+      "https://i.imgur.com/SWffOkG.jpeg",
+      "https://i.imgur.com/YYhdj9d.jpeg"
+    ];
 
-      if (countdown <= 0) {
-        clearInterval(tick);
-        loading.style.display = 'none';
-      }
-    }, 1000);
+    function renderCollection(containerId, arr){
+      const el = document.getElementById(containerId);
+      if(!el || el.dataset.built === "1") return;
+      el.dataset.built = "1";
 
-    // ===== Build gallery only after verify (performance + viewability) =====
-    function buildGallery(){
-      const grid = document.getElementById('galleryGrid');
-      if(!grid || grid.dataset.built === "1") return;
-      grid.dataset.built = "1";
+      arr.forEach((src, idx) => {
+        const box = document.createElement("div");
+        box.className = "imgBox";
 
-      photos.forEach((src, idx) => {
-        const box = document.createElement('div');
-        box.className = 'imgBox';
-
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = src;
-        img.alt = 'Preview ' + (idx+1);
-        img.loading = 'lazy';
+        img.alt = containerId + " preview " + (idx+1);
+        img.loading = "lazy";
 
-        const overlay = document.createElement('div');
-        overlay.className = 'blurOverlay';
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
         overlay.innerHTML = `<span>Preview ${idx+1}</span><span>🔒 Premium</span>`;
 
         box.appendChild(img);
         box.appendChild(overlay);
-        grid.appendChild(box);
+        el.appendChild(box);
       });
     }
 
-    // ===== Verify button =====
-    const verifyBtn = document.getElementById('verifyBtn');
-    const privateArea = document.getElementById('privateArea');
+    // Verify unlock
+    const verifyBtn = document.getElementById("verifyBtn");
+    const privateArea = document.getElementById("privateArea");
 
-    verifyBtn.addEventListener('click', () => {
-      privateArea.style.display = 'block';
-      buildGallery();
+    verifyBtn.addEventListener("click", () => {
+      privateArea.style.display = "block";
 
-      // smooth scroll to gallery
-      setTimeout(() => {
-        privateArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 150);
+      renderCollection("collection1", collection1);
+      renderCollection("collection2", collection2);
+      renderCollection("collection3", collection3);
 
-      // hide verify area for cleaner UX
-      document.getElementById('verifyWrap').style.display = 'none';
+      document.getElementById("verifyWrap").style.display = "none";
+      setTimeout(() => privateArea.scrollIntoView({behavior:"smooth", block:"start"}), 120);
     });
 
-    // ===== Exit modal triggers =====
+    // Exit modal
     const exitModal = document.getElementById('exitModal');
-    const openExit = document.getElementById('openExit');
-    const closeExit = document.getElementById('closeExit');
+    document.getElementById('openExit').addEventListener('click', () => exitModal.style.display = 'flex');
+    document.getElementById('closeExit').addEventListener('click', () => exitModal.style.display = 'none');
 
-    openExit.addEventListener('click', () => exitModal.style.display = 'flex');
-    closeExit.addEventListener('click', () => exitModal.style.display = 'none');
-
-    // Optional: exit-intent (desktop only)
+    // Desktop exit intent
     let exitShown = false;
     document.addEventListener('mouseout', (e) => {
       if(exitShown) return;
