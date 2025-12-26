@@ -78,14 +78,19 @@
       color:var(--text);
       cursor:pointer;
       transition: transform .15s ease, background .15s ease;
-      font-weight:700;
+      font-weight:800;
       user-select:none;
+      white-space:nowrap;
     }
     .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.08)}
     .btn.primary{
       background:linear-gradient(90deg, var(--pink), var(--pink2));
       border:none;
       box-shadow: 0 18px 60px rgba(255,43,121,.20);
+    }
+    .btn.soft{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
     }
 
     .adSlot{
@@ -129,6 +134,7 @@
       color:var(--muted);
       font-size:12px;
     }
+
     .cover{
       border-radius:16px; overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
@@ -153,7 +159,7 @@
       padding:7px 10px; border-radius:999px; font-size:12px;
       background:rgba(255,43,121,.18);
       border:1px solid rgba(255,43,121,.35);
-      color:#fff; font-weight:800; white-space:nowrap;
+      color:#fff; font-weight:900; white-space:nowrap;
     }
 
     .section{margin-top:14px; padding:18px;}
@@ -190,7 +196,7 @@
       50%{transform:translateY(-3px)}
     }
 
-    /* Collections */
+    /* Collections - vertical */
     .collectionHead{
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
       margin-bottom:12px;
@@ -198,13 +204,11 @@
     .collectionHead h3{font-size:22px}
     .collectionHead span{font-size:12px;color:var(--muted2)}
 
-    /* ✅ CHANGE: vertical layout */
     .grid{
       display:flex;
       flex-direction:column;
       gap:14px;
     }
-
     .imgBox{
       border-radius:16px;
       overflow:hidden;
@@ -213,8 +217,6 @@
       position:relative;
       width:100%;
     }
-
-    /* ✅ Image sizing: vertical scroll-friendly */
     .imgBox img{
       width:100%;
       height:auto;
@@ -224,7 +226,7 @@
       transform:scale(1.02);
     }
 
-    /* ✅ Curtain effect (tirai) */
+    /* Curtain reveal */
     .imgBox::before{
       content:"";
       position:absolute;
@@ -235,7 +237,6 @@
       transition-delay: var(--d, 0ms);
       z-index:3;
     }
-    /* subtle shine line */
     .imgBox::after{
       content:"";
       position:absolute;
@@ -248,8 +249,6 @@
       z-index:4;
       opacity:.65;
     }
-
-    /* Overlay label */
     .overlay{
       position:absolute; left:10px; right:10px; bottom:10px;
       padding:10px 12px;
@@ -262,10 +261,34 @@
       z-index:5;
       backdrop-filter: blur(6px);
     }
-
-    /* ✅ When revealed */
     .imgBox.reveal::before{ transform:translateY(110%); }
     .imgBox.reveal::after{ transform:translateY(260%); }
+
+    /* CPA block */
+    .offerBlock{
+      margin-top:14px;
+      padding:18px;
+      border-radius:22px;
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,43,121,.18), transparent 60%),
+        rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+    }
+    .offerHead{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+      margin-bottom:10px;
+    }
+    .offerHead h3{font-size:20px}
+    .offerHead span{font-size:12px;color:var(--muted2)}
+    .offerBlock p{color:var(--muted);line-height:1.75;font-size:15px}
+    .offerRow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .disclosure{
+      margin-top:10px;
+      font-size:12px;
+      color:rgba(255,255,255,.55);
+      line-height:1.5;
+    }
 
     /* CTA block */
     .ctaBlock{
@@ -299,7 +322,7 @@
       padding:10px 14px; border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
-      color:#fff; font-weight:800; cursor:pointer; white-space:nowrap;
+      color:#fff; font-weight:900; cursor:pointer; white-space:nowrap;
     }
     .sticky .miniBtn.primary{
       border:none;
@@ -321,13 +344,15 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
     }
+    .exitBox h3{font-size:22px;margin-bottom:8px}
+    .exitBox p{color:var(--muted);line-height:1.75}
     .exitRow{margin-top:14px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
   </style>
 </head>
 
 <body>
 
-  <!-- POP/EXTRA SCRIPT (as provided) -->
+  <!-- ✅ CPM SCRIPT #1 (as provided) -->
   <script src="https://pl28330359.effectivegatecpm.com/fa/c7/c4/fac7c43cc291fb94f52c0fbcb840ddd6.js"></script>
 
   <div class="container">
@@ -338,16 +363,18 @@
         <div class="dot">✨</div>
         <div>
           <h2>Private Members Area</h2>
-          <span>Exclusive previews • Premium access • Updated frequently</span>
+          <span>Exclusive previews • Smooth browsing • Updated frequently</span>
         </div>
       </div>
       <div class="topCta">
-        <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Open Premium</a>
-        <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock Now 🔥</a>
+        <!-- ✅ CPA Button (soft) -->
+        <a class="btn soft" id="ctaOfferTop" href="#" target="_blank" rel="noopener">🎁 Bonus Access</a>
+        <!-- Your existing link (kept) -->
+        <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Continue ➜</a>
       </div>
     </header>
 
-    <!-- TOP BANNER AD 728x90 -->
+    <!-- ✅ CPM SCRIPT #2 (728x90) -->
     <div class="adSlot glass" style="margin-top:14px;">
       <script>
         atOptions = {
@@ -365,18 +392,16 @@
     <!-- HERO -->
     <section class="hero glass">
       <div class="heroLeft">
-        <div class="heroTitle">Exclusive private previews — made for premium taste.</div>
+        <div class="heroTitle">Private preview lounge — clean & smooth.</div>
         <div class="heroSub">
-          This page shows <b>limited previews</b>. To see the preview images,
-          unlock them below with the button.
-          <br><br>
-          Scroll down to the verification button to reveal the photos.
+          Unlock below to reveal limited previews (18+).
+          After that, you can continue scrolling and browse collections comfortably.
         </div>
         <div class="tags">
           <div class="tag">🔒 Members Only</div>
-          <div class="tag">💎 Premium Access</div>
           <div class="tag">📸 Preview Collections</div>
-          <div class="tag">⚡ Fast Unlock</div>
+          <div class="tag">⚡ Fast Reveal</div>
+          <div class="tag">🎁 Bonus Access Option</div>
         </div>
       </div>
 
@@ -385,33 +410,35 @@
           <img src="https://i.imgur.com/WP73fM4.jpeg" alt="Cover" loading="eager">
           <div class="coverCaption">
             <div class="mini">
-              <strong>Private Preview</strong><br>
-              Tap unlock to reveal images
+              <strong>Preview Mode</strong><br>
+              Unlock to reveal images
             </div>
             <div class="pill">18+ Only</div>
           </div>
         </div>
 
+        <!-- Keep your existing “continue” (optional) -->
         <a class="btn primary" style="width:100%;padding:14px 16px;font-size:16px;"
            href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">
-          Continue to Premium ➜
+          Continue ➜
         </a>
+
         <div style="text-align:center;color:rgba(255,255,255,.55);font-size:12px;">
-          Premium access opens full content.
+          Tip: unlock previews first, then scroll for collections.
         </div>
       </div>
     </section>
 
     <!-- LONG CONTENT -->
     <section class="section glass">
-      <h3>Inside this page</h3>
+      <h3>How it works</h3>
       <p>
-        You’ll see collections after unlock. This helps keep the page clean,
-        faster to load, and easier to browse on mobile.
+        This page keeps previews locked to maintain a clean browsing experience.
+        After unlock, the gallery reveals with a smooth “curtain” animation and scroll-friendly layout.
       </p>
     </section>
 
-    <!-- MID AD (EffectiveGate CPM invoke container) -->
+    <!-- ✅ CPM SCRIPT #3 (EffectiveGate container) -->
     <div class="adSlot glass">
       <script async="async" data-cfasync="false" src="https://pl28330365.effectivegatecpm.com/01f0c9537a663937b29060e419b16fd5/invoke.js"></script>
       <div id="container-01f0c9537a663937b29060e419b16fd5"></div>
@@ -422,8 +449,7 @@
     <section id="verifyWrap" class="glass verify">
       <h2>Unlock Preview Photos</h2>
       <p>
-        Click the button below to <b>show the preview images</b>.
-        Confirm you are <b>18+</b> to continue.
+        Click below to show the preview images. Confirm you are <b>18+</b> to continue.
       </p>
 
       <div class="lockHint">
@@ -433,11 +459,12 @@
 
       <div class="verifyRow">
         <button class="btn primary" id="verifyBtn">🔓 Show Private Photos (18+)</button>
-        <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Skip to Premium</a>
+        <a class="btn soft" id="ctaOfferMid" href="#" target="_blank" rel="noopener">🎁 Bonus Access Option</a>
       </div>
 
-      <div style="margin-top:8px;font-size:13px;color:rgba(255,255,255,.65)">
-        After clicking, the collections will appear below with a smooth reveal.
+      <div class="disclosure" style="max-width:720px;margin:10px auto 0;">
+        Bonus Access opens a partner offer page. Availability may depend on your country and device.
+        Some offers may require steps to access bonus content.
       </div>
 
       <div class="warn">By continuing you confirm you are 18+ and agree to view adult-themed previews.</div>
@@ -446,7 +473,7 @@
     <!-- PRIVATE AREA -->
     <div id="privateArea" style="display:none;">
 
-      <!-- 300x250 AD -->
+      <!-- ✅ CPM SCRIPT #4 (300x250) -->
       <div class="adSlot glass" style="margin-top:14px;">
         <script>
           atOptions = {
@@ -470,8 +497,26 @@
         <div class="grid" id="collection1"></div>
       </section>
 
+      <!-- CPA OFFER BLOCK (after engagement) -->
+      <section class="offerBlock">
+        <div class="offerHead">
+          <h3>🎁 Bonus Access</h3>
+          <span>Optional • Takes a few seconds</span>
+        </div>
+        <p>
+          Want more options to continue? Use Bonus Access below — it will open a partner offer available for your region.
+        </p>
+        <div class="offerRow">
+          <a class="btn primary" id="ctaOfferAfter1" href="#" target="_blank" rel="noopener">Continue with Bonus Access ➜</a>
+          <a class="btn soft" href="#collection2">Keep scrolling</a>
+        </div>
+        <div class="disclosure">
+          Disclosure: Bonus Access links to a partner offer page. Terms and requirements vary by offer and country.
+        </div>
+      </section>
+
       <!-- COLLECTION 2 -->
-      <section class="section glass">
+      <section class="section glass" id="collection2Wrap">
         <div class="collectionHead">
           <h3>My Collection 2</h3>
           <span>Unlocked • Preview only</span>
@@ -490,11 +535,14 @@
 
       <!-- CTA -->
       <section class="ctaBlock">
-        <h2>Ready for the full experience?</h2>
-        <p>Premium access gives you more content, more updates, and the complete private section.</p>
+        <h2>Continue to the next step</h2>
+        <p>Pick the option that works best for you.</p>
         <div class="ctaRow">
-          <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock Premium 🔥</a>
-          <a class="btn" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Continue ➜</a>
+          <a class="btn primary" id="ctaOfferBottom" href="#" target="_blank" rel="noopener">🎁 Bonus Access ➜</a>
+          <a class="btn soft" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Continue ➜</a>
+        </div>
+        <div class="disclosure" style="max-width:760px;margin:10px auto 0;">
+          Bonus Access links to partner offers. Availability and requirements vary by country/device.
         </div>
       </section>
     </div>
@@ -504,27 +552,46 @@
 
   <!-- Sticky CTA -->
   <div class="sticky">
-    <small><b>Exclusive access</b><br><span style="color:rgba(255,255,255,.55)">Premium unlock available</span></small>
+    <small><b>Continue options</b><br><span style="color:rgba(255,255,255,.55)">Scroll-friendly • Smooth reveal</span></small>
     <div class="right">
       <button class="miniBtn" id="openExit">Offers</button>
-      <a class="miniBtn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Unlock ➜</a>
+      <a class="miniBtn primary" id="ctaOfferSticky" href="#" target="_blank" rel="noopener">🎁 Bonus ➜</a>
     </div>
   </div>
 
   <!-- Exit Modal -->
   <div id="exitModal">
     <div class="exitBox">
-      <h3>Wait — your premium unlock is ready 💎</h3>
-      <p>Want to continue to the premium page now? You’ll get the full private access beyond previews.</p>
+      <h3>Before you go… 🎁</h3>
+      <p>
+        Bonus Access is available now. It opens a partner offer for your region — you can continue in seconds.
+      </p>
       <div class="exitRow">
-        <button class="btn" id="closeExit">Not now</button>
-        <a class="btn primary" href="https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b" target="_blank" rel="noopener">Go Premium ➜</a>
+        <button class="btn soft" id="closeExit">Not now</button>
+        <a class="btn primary" id="ctaOfferExit" href="#" target="_blank" rel="noopener">Continue with Bonus Access ➜</a>
+      </div>
+      <div class="disclosure">
+        Disclosure: Bonus Access links to partner offers. Terms vary by offer/country.
       </div>
     </div>
   </div>
 
   <script>
-    // Collections (your links ✅)
+    // =========================
+    // ✅ SET YOUR CPA SMARTLINK HERE
+    // =========================
+    const CPA_SMARTLINK = "https://www.effectivegatecpm.com/y5r5pa7dr?key=0c7463c2471b82b3201a4bddbf1ce91b";
+
+    // Hook CPA links
+    const ctaIds = [
+      "ctaOfferTop","ctaOfferMid","ctaOfferAfter1","ctaOfferBottom","ctaOfferSticky","ctaOfferExit"
+    ];
+    ctaIds.forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.href = CPA_SMARTLINK;
+    });
+
+    // Collections
     const collection1 = [
       "https://i.imgur.com/cbXabVg.jpeg",
       "https://i.imgur.com/214K5TV.jpeg",
@@ -541,7 +608,7 @@
       "https://i.imgur.com/YYhdj9d.jpeg"
     ];
 
-    // ✅ Reveal animation: curtain opens top->bottom, stagger per image
+    // Reveal animation: curtain opens top->bottom, stagger per image
     function renderCollection(containerId, arr, startDelayMs){
       const el = document.getElementById(containerId);
       if(!el || el.dataset.built === "1") return;
@@ -550,7 +617,7 @@
       arr.forEach((src, idx) => {
         const box = document.createElement("div");
         box.className = "imgBox";
-        box.style.setProperty("--d", (startDelayMs + (idx * 180)) + "ms"); // stagger
+        box.style.setProperty("--d", (startDelayMs + (idx * 180)) + "ms");
 
         const img = document.createElement("img");
         img.src = src;
@@ -559,13 +626,12 @@
 
         const overlay = document.createElement("div");
         overlay.className = "overlay";
-        overlay.innerHTML = `<span>Preview ${idx+1} • Swipe down</span><span>🔒 Premium</span>`;
+        overlay.innerHTML = `<span>Preview ${idx+1} • Swipe down</span><span>🔒 Locked</span>`;
 
         box.appendChild(img);
         box.appendChild(overlay);
         el.appendChild(box);
 
-        // reveal after short “pause” so it feels like curtain opening
         requestAnimationFrame(() => {
           setTimeout(() => box.classList.add("reveal"), 220);
         });
@@ -579,13 +645,11 @@
     verifyBtn.addEventListener("click", () => {
       privateArea.style.display = "block";
 
-      // build in order + delays so it feels sequential down the page
       renderCollection("collection1", collection1, 0);
       renderCollection("collection2", collection2, 700);
       renderCollection("collection3", collection3, 1400);
 
       document.getElementById("verifyWrap").style.display = "none";
-
       setTimeout(() => privateArea.scrollIntoView({behavior:"smooth", block:"start"}), 180);
     });
 
@@ -604,5 +668,11 @@
       }
     });
   </script>
+
+  <!-- NOTE:
+    Kamu bilang "kurang satu iklan" kemarin.
+    Di HTML ini gue tetap jaga iklan CPM yang kamu kirim (4 item).
+    Kalau kamu punya script iklan ke-5, tempel di slot yang kamu mau (misal di bawah Collection 2).
+  -->
 </body>
 </html>
